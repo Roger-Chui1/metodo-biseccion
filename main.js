@@ -1,8 +1,9 @@
 let calcular = () => {
   let fun = document.getElementById("fun").value;
+  let fun1 = fun.toLowerCase();
   function resolverEcuacion(valor) {
     // Con la ecuación: X^3 + 4X ^2 -10
-    let dat = fun.replace(/x/g, valor);
+    let dat = fun1.replace(/x/g, valor);
     let da = dat.replace(/["^"]/g, "**");
     return eval(da);
   }
