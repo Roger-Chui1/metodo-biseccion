@@ -2,24 +2,21 @@ let calcular = () => {
   let fun = document.getElementById("fun").value;
   let fun1 = fun.toLowerCase();
   function resolverEcuacion(valor) {
-    // Con la ecuación: X^3 + 4X ^2 -10
     let dat = fun1.replace(/x/g, valor);
     let da = dat.replace(/["^"]/g, "**");
     return eval(da);
   }
   let iterador = 0;
-  let a = parseInt(document.getElementById("a").value);
-  let b = parseInt(document.getElementById("b").value);
+  let Xa = parseFloat(document.getElementById("a").value);
+  let Xb = parseFloat(document.getElementById("b").value);
   let nro = parseInt(document.getElementById("i").value);
   let xi_xi = 0;
-  let ultimo_xi = 0;
   while (iterador < nro) {
-    let fa = resolverEcuacion(a);
-    let fb = resolverEcuacion(b);
-    let xi = (a + b) / 2;
-    let fxi = resolverEcuacion(xi);
-    let fa_fxi = fa * fxi;
-    xi_xi = Math.abs(xi - ultimo_xi);
+    let fxa = resolverEcuacion(Xa);
+    let fxb = resolverEcuacion(Xb);
+    let Xr = (Xa + Xb) / 2;
+    let fxr = resolverEcuacion(Xr);
+    let fxa_fxr = fxa * fxr;
     // creando elementos
     let $tbody = document.querySelector("#mostrar");
     let $tr = document.createElement("tr");
@@ -43,14 +40,14 @@ let calcular = () => {
     $td8.setAttribute("class", "p-2");
     $td9.setAttribute("class", "p-2");
     let $td1t = document.createTextNode(iterador + 1);
-    let $td2t = document.createTextNode(a.toFixed(4));
-    let $td3t = document.createTextNode(b.toFixed(4));
-    let $td4t = document.createTextNode(fa.toFixed(4));
-    let $td5t = document.createTextNode(fb.toFixed(4));
-    let $td6t = document.createTextNode(xi.toFixed(4));
-    let $td7t = document.createTextNode(fxi.toFixed(4));
-    let $td8t = document.createTextNode(fa_fxi.toFixed(4));
-    let $td9t = document.createTextNode(xi_xi.toFixed(4));
+    let $td2t = document.createTextNode(Xa.toFixed(6));
+    let $td3t = document.createTextNode(Xb.toFixed(6));
+    let $td4t = document.createTextNode(Xr.toFixed(6));
+    let $td5t = document.createTextNode(fxa.toFixed(6));
+    let $td6t = document.createTextNode(fxb.toFixed(6));
+    let $td7t = document.createTextNode(fxr.toFixed(6));
+    let $td8t = document.createTextNode(fxa_fxr.toFixed(6));
+    let $td9t = document.createTextNode(xi_xi.toFixed(6));
     $td1.appendChild($td1t);
     $td2.appendChild($td2t);
     $td3.appendChild($td3t);
@@ -71,14 +68,21 @@ let calcular = () => {
     $tr.appendChild($td9);
     $tbody.appendChild($tr);
     iterador++;
-    if (fa_fxi > 0) {
-      a = xi;
+    if (fxa_fxr < 0) {
+      Xa = Xa;
+      let Xd = Xr;
+      let ultimo_xi = (Xa+Xd)/2;
+      xi_xi = Math.abs(((ultimo_xi-Xd)/ultimo_xi)* 100);
     } else {
-      b = xi;
+      Xa = Xr;
+      let Xd = Xr;
+      let ultimo_xi = (Xb+Xd)/2;
+      xi_xi = Math.abs(((ultimo_xi-Xd)/ultimo_xi)* 100);
     }
-    ultimo_xi = xi;
-    if (xi_xi == 0) {
-      break;
+    if (fxa_fxr > 0) {
+      Xb = Xb;
+    } else {
+      Xb = Xr;
     }
   }
 };
