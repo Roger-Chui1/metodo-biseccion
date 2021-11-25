@@ -14,17 +14,65 @@
       crossorigin="anonymous"
     />
   </head>
-  <body class="bg-secondary">
+  <body class="">
     <div class="container">
       <h1 class="mt-4 bg-black p-3 rounded text-warning text-center">
-        Aplicacion web de resolucion de ecuaciones no lineales por el metodo de
-        biseccion
+        Metodo de Biseccion
       </h1>
+      <div class="m-4">
+        <p>
+          El método de la bisección o corte binario es un método de búsqueda
+          incremental que divide el intervalo siempre en 2. Si la función cambia
+          de signo sobre un intervalo, se evalúa el valor de la función en el
+          punto medio. La posición de la raíz se determina situándola en el
+          punto medio del subintervalo donde exista cambio de signo. El proceso
+          se repite hasta mejorar la aproximación.
+        </p>
+        <p>
+          <b>Paso 1</b> Elegir los valores iniciales Xa y Xb, de tal forma de
+          que la función cambie de signo:
+        </p>
+        <p class="text-center">\(f(Xa)f(Xb) < 0\)</p>
+        <p>
+          <b>Paso 2</b> La primera aproximación a la raíz se determina con la
+          fórmula del punto medio de esta forma:
+        </p>
+        <p class="text-center">\(Xr = {Xa - Xb\over 2} \)</p>
+        <p>
+          <b>Paso 3</b> Realizar las siguientes evaluaciones para determinar el
+          intervalo de la raíz:
+        </p>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Si f(Xa)f(Xb) < 0, entonces la
+          solución o raíz está entre Xa y Xr, y Xb pasa a ser el punto medio
+          (Xr).
+        </p>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Si f(Xa)f(Xb) > 0, entonces la
+          solución o raíz está fuera del intervalo entre Xa y el punto medio, y
+          Xa pasa a ser el punto medio (Xr).
+        </p>
+        <p>
+          <b>Paso 4</b>
+        </p>
+        <p class="text-center">
+          Si&nbsp;&nbsp; \(f(Xa)f(Xb) = 0\) &nbsp;&nbsp;&nbsp; ó
+          &nbsp;&nbsp;&nbsp; \(Error = | Xr – Xr – 1 | < Tolerancia \)
+        </p>
+        <p>
+          Donde Xr es el punto medio de la iteración actual y Xr – 1 es el punto
+          medio de la iteración anterior. Al cumplirse la condición del Paso 4,
+          la raíz o solución es el último punto medio que se obtuvo. Para el
+          error relativo porcentual se tiene la siguiente fórmula
+        </p>
+        <p class="text-center">\( Error-relativo = {Error\over Xr} *100 \)</p>
+      </div>
+      <h2 class="text-center">Resolucion por el metodo de biseccion</h2>
       <div class="row">
         <div class="col mt-4">
           <div class="d-flex justify-content-center">
             <div class="bg-dark text-light p-5">
-              <h1 class="text-center">Ingrese los Datos</h1>
+              <h2 class="text-center">Ingrese los Datos</h2>
               <label for="fun" class="mt-4">Funcion:</label>
               <input
                 type="text"
@@ -32,14 +80,14 @@
                 class="form-control"
                 placeholder="Ej. x^3+4*x^2-10"
               />
-              <label for="fun" class="mt-2">Intervalo Superior:</label>
+              <label for="fun" class="mt-2">Intervalo Xa:</label>
               <input
                 type="text"
                 id="a"
                 class="form-control"
                 placeholder="Ej. 1"
               />
-              <label for="fun" class="mt-2">Intervalo Inferior:</label>
+              <label for="fun" class="mt-2">Intervalo Xb:</label>
               <input
                 type="text"
                 id="b"
@@ -80,23 +128,34 @@
                 <th class="p-2">f(xb)</th>
                 <th class="p-2">f(xr)</th>
                 <th class="p-2">f(xa) * f(xr)</th>
-                <th class="p-2">Ea %</th>
+                <th class="p-2">E</th>
+                <th class="p-2">E %</th>
               </tr>
             </thead>
             <tbody id="mostrar"></tbody>
           </table>
+          <p id="raiz" class="fw-bold mt-4"></p>
         </div>
       </div>
     </div>
+    <div class="container mt-5 text-center" id="reso">
+      <h2>Resolucion de la ecuacion por pasos</h2>
+      <h3 id="1"></h3>
+    </div>
     <footer class="fw-bold text-black text-center mt-5">
-      <p>&copy; Grupo Diablito - 2021</p>
+      <p>&copy; Grupo 3 - 2021</p>
     </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
     <script src="main.js"></script>
   </body>
 </html>
-
